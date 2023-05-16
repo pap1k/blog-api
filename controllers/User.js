@@ -14,8 +14,8 @@ export const register = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hash = await bcrypt.hash(password, salt);
 
-        const db = await UserModel.find({ email: req.body.email });
-        if (db)
+        const db = await UserModel.find({ email: req.body.email }).count();
+        if (db > 0)
             return sendError(
                 req,
                 res,
