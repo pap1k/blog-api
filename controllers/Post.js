@@ -127,8 +127,6 @@ export const getAll = async (req, res) => {
         if (isNaN(page) || page < 1)
             return sendError(req, res, 404, "Такой страницы не существует");
 
-        page = Number(page);
-
         const toskip = 20;
         const posts = await PostModel.find({ deleted: false })
             .sort("-createdAt")
@@ -142,7 +140,7 @@ export const getAll = async (req, res) => {
 
         return sendSuccess(res, {
             paginator: {
-                page,
+                page: Number(page),
                 pageCount,
             },
             data: posts,
