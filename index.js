@@ -35,6 +35,11 @@ app.listen(process.env.PORT || 1111, (err) => {
 
     routes(app, upload);
 
+    app.use((err, req, res, next) => {
+        console.error(err.stack);
+        res.status(500).send("Произошла ошибка. Проверьте входные данные");
+    });
+
     console.log("Server started");
 
     mongoose
