@@ -22,7 +22,7 @@ export default (app, upload) => {
     );
 
     app.get("/posts/", (req, res) => {
-        res.redirect("page/1");
+        res.redirect("/posts/page/1");
     });
     app.get("/posts/page/:num", PostController.getAll);
     app.get("/posts/:id", PostController.getOne);
