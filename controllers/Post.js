@@ -161,7 +161,7 @@ export const create = async (req, res) => {
 
         await doc.save();
 
-        return sendSuccess(res);
+        return sendSuccess(res, doc._doc);
     } catch (err) {
         console.log(err);
         return sendError(req, res, 500, "Не удалось создать пост");
